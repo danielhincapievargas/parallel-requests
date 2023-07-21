@@ -14,72 +14,24 @@ const fetchCharactersList = async () => {
 
 const ParallelRequest = () => {
 
-  const [charactersList, setCharactersList] = useState([
+  const [episodesAndCharacters, setEpisodesAndCharacters] = useState([
     {
-      id: "",
-      name: "",
-      status: "",
-      species: "",
-      type: "",
-      gender: "",
-      origin: {},
-      location: {},
-      image: "",
-      episode: [],
-      url: "",
-      created: ""
-    }
-  ])
-  //console.log(charactersList[0].name);
-  
-  const [episodes, setEpisodes] = useState([
-    {
-      air_date: "",
-      characters: {},
-      episode: "",
-      id: "",
-      name: "",
-      url: "",
-      charactersList: [
-        {
-          id: "",
-          name: "",
-          status: "",
-          species: "",
-          type: "",
-          gender: "",
-          origin: {},
-          location: {},
-          image: "",
-          episode: [],
-          url: "",
-          created: ""
-        }]
+
     }
   ])
 
- 
   useEffect(() => {
     const fetchAll = async () => {
       const episodesPromise = fetchEpisodes()
       const charactersListPromise = fetchCharactersList()
 
       const [episodesData, charactersListData] = await Promise.all([episodesPromise, charactersListPromise])
+      const data = getEpisodesWithCharacters(episodesData.results, charactersListData.results);
+      setEpisodesAndCharacters(data);
 
-      setEpisodes(episodesData.results)
-      setCharactersList(charactersListData.results)
     }
     fetchAll()
   }, [])
-
-
-  const twentyEpisodes = episodes.slice(0, 20)
-
-  const episodesAndCharacters = getEpisodesWithCharacters(twentyEpisodes, charactersList);
-  //console.log(episodesAndCharacters);
-
-  console.log(episodesAndCharacters);
-  //console.log(episodes.charactersList);
 
   return (
     <div>
