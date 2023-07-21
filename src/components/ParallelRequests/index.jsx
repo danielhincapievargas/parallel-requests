@@ -1,3 +1,4 @@
+import './ParallelRequests.scss'
 import {useState, useEffect} from 'react';
 import { getEpisodesWithCharacters } from './utils';
 
@@ -11,12 +12,32 @@ const fetchCharactersList = async () => {
   return response.json(); 
 }
 
-
 const ParallelRequest = () => {
 
   const [episodesAndCharacters, setEpisodesAndCharacters] = useState([
-    {
-
+    {     
+        id: "",
+        name: "",
+        air_date: "",
+        episode: "",
+        characters: {},
+        url: "",
+        created: "",
+        charactersList: [
+          {
+            id: "",
+            name: "",
+            status: "",
+            species: "",
+            type: "",
+            gender: "",
+            origin: {},
+            location: {},
+            image: "",
+            episode: [],
+            url: "",
+            created: ""
+          }]  
     }
   ])
 
@@ -28,25 +49,33 @@ const ParallelRequest = () => {
       const [episodesData, charactersListData] = await Promise.all([episodesPromise, charactersListPromise])
       const data = getEpisodesWithCharacters(episodesData.results, charactersListData.results);
       setEpisodesAndCharacters(data);
-
     }
     fetchAll()
   }, [])
 
   return (
-    <div>
-      <h1>Episodes</h1>
-      
-      {episodesAndCharacters.map((episode) => (
-        <div  key={episode.id}>
-          <div>{`${episode.id}. ${episode.name} - ${episode.episode}`}</div>
-          <div>{`Fecha al aire: ${episode.air_date}`}</div>
-          
-        </div>
-      )
-      )}
-
-    </div>
+    <>
+      <div className="logo">
+        <img src="/Rick_and_Morty.svg.png" alt="logo" />
+      </div>
+      <div className="cards-container">
+        {episodesAndCharacters.map((episode) => (
+          <div className="card" key={episode.id}>
+            <div className="card-title">{`${episode.id}. ${episode.name} - ${episode.episode}`}</div>
+            <div className="card-date">{`Air Date: ${episode.air_date}`}</div>
+            <div className="characters-title">Characters</div>
+            <div className="characters-container">
+              {episode.charactersList.map((character) => (
+                <div className="character" key={character.id}>
+                    {`- ${character.name}  (${character.species})`}
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+        )}
+      </div>
+    </>
   )
 }
 

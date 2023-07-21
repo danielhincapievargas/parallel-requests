@@ -1,15 +1,11 @@
 import ParallelRequests from './components/ParallelRequests';
-//import SimpleRequest from './components/SimpleRequest';
-//import Mensaje from './components/Mensaje';
-import './App.css';
+import './App.scss';
 
 function App() {
 
 
   return (
     <>
-      {/* <Mensaje /> */}
-      {/* <SimpleRequest /> */}
       <ParallelRequests />
     </>
   )

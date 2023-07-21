@@ -1,0 +1,50 @@
+
+.logo {
+  background-color: #242424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img{
+    margin: 0 auto;
+    width: 50%;
+    min-width: 300px;
+
+  }
+}
+.cards-container{
+  width: 100%;
+  .card{
+    text-align: center;
+    margin: 12px auto;
+    width: 80%;
+    min-width: 308px;
+    font-family: 'Bangers', cursive;
+    background-color: #40b5cb;
+    color: #242424;
+    border: solid 4px #c0df40;
+    border-radius: 5px;
+    .card-title{
+      margin-top: 12px;
+      font-size: calc(25px + (40 - 25) * ((100vw - 320px) / (1920 - 320)));
+      letter-spacing: 1px;
+    }
+    .characters-title{
+      font-size: calc(20px + (35 - 20) * ((100vw - 320px) / (1920 - 320)));
+    }
+    .card-date {
+      margin-bottom: 12px;
+      font-size: calc(15px + (25 - 15) * ((100vw - 320px) / (1920 - 320)));
+    }
+    .characters-container {
+      margin: 12px auto;
+      max-width: 400px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .character{
+        margin-right: calc(15px + (40 - 15) * ((100vw - 320px) / (1920 - 320)));
+        font-size: calc(15px + (20 - 15) * ((100vw - 320px) / (1920 - 320)));
+      }
+    }
+  }
+}
