@@ -47,6 +47,7 @@ const ParallelRequest = () => {
       const charactersListPromise = fetchCharactersList()
 
       const [episodesData, charactersListData] = await Promise.all([episodesPromise, charactersListPromise])
+      
       const data = getEpisodesWithCharacters(episodesData.results, charactersListData.results);
       setEpisodesAndCharacters(data);
     }
